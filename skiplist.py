@@ -148,9 +148,6 @@ class SkipList(object):
             self.head.next.extend([None for _ in range(self.head.level, new_level)])
             self.head.level = new_level
         else:
-            while len(self.head) > 1:
-                if not self.head[-1]:
-                    self.head.next.pop()
-                    self.head.level -= 1
-                else:
-                    break
+            while len(self.head) > 1 and not self.head[-1]:
+                self.head.next.pop()
+                self.head.level -= 1
